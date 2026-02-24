@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('tasbih_id')->constrained()->cascadeOnDelete();
-            $table->timestamp('started_at');
-            $table->timestamp('ended_at')->nullable();
-            $table->integer('duration_seconds');
+            $table->dateTime('started_at');
+            $table->dateTime('ended_at')->nullable();
+            $table->integer('duration_seconds')->default(0);
 
             $table->timestamps();
         });

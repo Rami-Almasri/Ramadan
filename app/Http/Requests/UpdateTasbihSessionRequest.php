@@ -11,7 +11,7 @@ class UpdateTasbihSessionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdateTasbihSessionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            //  'user_id' => "required|exists:users,id",
+            //  'tasbih_id' => "required|exists:tasbihs,id",
+            // 'duration_seconds' => "required|integer",
+            //  'started_at' => "required|date",
+            'ended_at' => "required|date",
         ];
     }
 }

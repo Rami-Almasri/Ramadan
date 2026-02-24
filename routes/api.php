@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DuaController;
 use App\Http\Controllers\TasbihController;
+use App\Http\Controllers\TasbihSessionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,4 +39,12 @@ Route::middleware('auth:sanctum')->prefix('duas')->controller(DuaController::cla
     Route::get('/show/{dua}', 'show');
     Route::post('/update/{dua}', 'update');
     Route::delete('/destroy/{dua}', 'destroy');
+});
+
+Route::middleware('auth:sanctum')->prefix('tasbihsessions')->controller(TasbihSessionController::class)->group(function () {
+    Route::get("/index", 'index');
+    Route::post("/store", 'store');
+    Route::get("/show/{tasbih}", ' show');
+    Route::post('/update/{tasbihsession}', 'update');
+    Route::delete('/destroy/{tasbih}', 'destroy');
 });

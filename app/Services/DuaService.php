@@ -29,6 +29,7 @@ class DuaService
     }
     public function update(array $data, Dua $dua)
     {
+
         $dua->update($data);
         return $dua;
     }
