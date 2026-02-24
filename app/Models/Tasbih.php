@@ -10,4 +10,9 @@ class Tasbih extends Model
     /** @use HasFactory<\Database\Factories\TasbihFactory> */
     use HasFactory;
     protected $fillable = ['title', 'reward', 'count_recommended'];
+
+    public function sessions()
+    {
+        return $this->hasMany(TasbihSession::class);
+    }
 }
