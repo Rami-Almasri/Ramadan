@@ -18,7 +18,7 @@ class TasbihSession extends Model
         'duration_seconds',
     ];
 
-    public function tasbih()
+    public function tasbihs()
     {
         return $this->belongsTo(Tasbih::class, 'tasbih_id');
     }

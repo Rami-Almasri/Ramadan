@@ -23,6 +23,9 @@ class TasbihSessionResource extends JsonResource
             'ended_at'   => $this->ended_at?->toISOString(),
             'duration_seconds' => $this->duration_seconds ?? 0,
             'duration_formatted' => gmdate('H:i:s', $this->duration_seconds ?? 0), // HH:MM:SS
+            //'user_info'=>
+            'tasbih' => TasbihResource::make($this->whenLoaded("tasbihs")),
+            'user' => UserResource::make($this->whenLoaded("user")),
         ];
     }
 }

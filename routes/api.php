@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DuaController;
+use App\Http\Controllers\PrayerTimesController;
 use App\Http\Controllers\TasbihController;
 use App\Http\Controllers\TasbihSessionController;
 use Illuminate\Http\Request;
@@ -48,3 +49,4 @@ Route::middleware('auth:sanctum')->prefix('tasbihsessions')->controller(TasbihSe
     Route::post('/update/{tasbihsession}', 'update');
     Route::delete('/destroy/{tasbih}', 'destroy');
 });
+Route::get('/prayer-times/{lat}/{long}', [PrayerTimesController::class, 'getPrayerTimes']);

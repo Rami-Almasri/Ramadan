@@ -22,7 +22,7 @@ class StoreTasbihSessionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => "required|exists:users,id",
+            //'user_id' => "exists:users,id",
             'tasbih_id' => "required|exists:tasbihs,id",
             // 'duration_seconds' => "nullable|integer",
             //  'started_at' => "required|date",

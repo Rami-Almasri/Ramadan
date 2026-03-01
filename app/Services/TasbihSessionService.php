@@ -21,7 +21,7 @@ class TasbihSessionService
     public function index()
     {
 
-        $tasbih = TasbihSession::where("user_id", Auth::id())->with(['user', 'tasbih'])->get();
+        $tasbih = TasbihSession::where("user_id", Auth::id())->with(['user', 'tasbihs'])->get();
         if ($tasbih) {
             return $tasbih;
         } else {
@@ -49,7 +49,7 @@ class TasbihSessionService
 
         // Carbon instances
         $startedAt = $tasbihsession->started_at->copy()->utc();
-        $endedAt   = Carbon::parse($data['ended_at'])->utc();
+        $endedAt   = now()->utc();
 
         $totalDuration = $startedAt->diffInSeconds($endedAt, false);
 

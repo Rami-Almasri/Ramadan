@@ -20,11 +20,11 @@ class AuthController extends Controller
             $validatedData = validator::make($request->all(), [
 
                 'name' => 'required|regex:/^[a-zA-Z\s]+$/',
-                'email' => 'required|email',
+                'username' => 'required|string|max:255|unique:users,username',
                 'password' => 'required|min:6',
             ], [
                 'name.regex' => 'The name must not contain numbers or special characters.',
-                'email.email' => 'The email must be a valid email address.',
+
 
             ]);
             if ($validatedData->invalid()) {
@@ -37,7 +37,8 @@ class AuthController extends Controller
             }
             $user = User::create([
                 'name' => $request->name,
-                'email' => $request->email,
+
+                'username' => $request->username,
                 'password' => Hash::make($request->password),
 
 
@@ -64,11 +65,11 @@ class AuthController extends Controller
         $validatedData = validator::make($request->all(), [
 
 
-            'email' => 'required|email|exists:users,email',
+            'username' => 'required|exists:users,username',
             'password' => 'required|min:6',
         ], [
             'name.regex' => 'The name must not contain numbers or special characters.',
-            'email.email' => 'The email must be a valid email address.',
+
 
         ]);
         if ($validatedData->invalid()) {
@@ -79,8 +80,8 @@ class AuthController extends Controller
 
             ], 422);
         }
-        $data = $request->only(["email", "password"]);
-        $user = User::where('email', $request->email)->first();
+        $data = $request->only(["username", "password"]);
+        $user = User::where('username', $request->username)->first();
         if (!$user) {
 
             return response()->json([
